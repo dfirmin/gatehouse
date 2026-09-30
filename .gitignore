@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+
+# gatehouse runtime state
+.gatehouse/
+.gatehouse-hook-state.json
+gatehouse-status.log

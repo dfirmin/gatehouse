@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gatehouse"
+version = "0.1.0"
+description = "Completion gates for AI-agent work: write the acceptance ledger first, run reviewed checks, reverify, report only what the evidence supports."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "dfirmin" }]
+keywords = ["ai-agents", "claude-code", "agent-skills", "verification", "completion", "stop-hook"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: POSIX",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.scripts]
+gatehouse = "gatehouse.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/dfirmin/gatehouse"
+Issues = "https://github.com/dfirmin/gatehouse/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
