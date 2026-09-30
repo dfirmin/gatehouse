@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 290" width="900" height="290" role="img" aria-labelledby="t d">
+  <title id="t">gatehouse Stop hook</title>
+  <desc id="d">An agent walks up to a closed gate. The Stop hook blocks it while gates are unmet. gatehouse check turns both gates green, the gate opens, and the agent walks through.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="1" stop-color="#060912"/></linearGradient>
+    <radialGradient id="aura" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#6d5dfc" stop-opacity=".35"/><stop offset="1" stop-color="#6d5dfc" stop-opacity="0"/></radialGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2340"/><stop offset="1" stop-color="#0a0e1c"/></linearGradient>
+    <linearGradient id="stoneF" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4b5578"/><stop offset=".5" stop-color="#6b7699"/><stop offset="1" stop-color="#3d4666"/></linearGradient>
+    <linearGradient id="stoneS" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2b3350"/><stop offset="1" stop-color="#1c2238"/></linearGradient>
+    <linearGradient id="stoneT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a95b8"/><stop offset="1" stop-color="#5d6890"/></linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b3202c"/><stop offset=".35" stop-color="#ff6b6b"/><stop offset="1" stop-color="#9b1c28"/></linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd166"/><stop offset=".55" stop-color="#f4a62a"/><stop offset="1" stop-color="#c77a12"/></linearGradient>
+    <linearGradient id="visor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a3358"/><stop offset="1" stop-color="#0a0d1c"/></linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2140" stop-opacity=".95"/><stop offset="1" stop-color="#0d1226" stop-opacity=".95"/></linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c6dff"/><stop offset=".5" stop-color="#2b3560"/><stop offset="1" stop-color="#22d3a6"/></linearGradient>
+    <linearGradient id="doorg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2af5b0"/><stop offset="1" stop-color="#0b7a5a"/></linearGradient>
+    <radialGradient id="redpool" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff4d5a" stop-opacity=".55"/><stop offset="1" stop-color="#ff4d5a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="greenpool" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2af5b0" stop-opacity=".6"/><stop offset="1" stop-color="#2af5b0" stop-opacity="0"/></radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
+    <clipPath id="gateclip"><rect x="334" y="104" width="94" height="110"/></clipPath>
+    <clipPath id="typeclip"><rect id="typed" x="614" y="196" width="214" height="20"/></clipPath>
+  </defs>
+  <style>
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+    .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+    .dim{fill:#8791b5}.fg{fill:#eef1ff}.red{fill:#ff6b74}.grn{fill:#39f0b4}
+    #stage{animation:stage 11s ease-in-out infinite}
+    #agent{animation:agent 11s ease-in-out infinite}
+    #bob{animation:bob .5s ease-in-out infinite alternate}
+    #leg1{animation:step .5s ease-in-out infinite alternate;transform-origin:0 0}
+    #leg2{animation:step .5s ease-in-out infinite alternate-reverse;transform-origin:0 0}
+    #portcullis{animation:lift 11s cubic-bezier(.6,0,.3,1) infinite}
+    #blocked,#bubble,#redpool{animation:blocked 11s infinite}
+    #open,#greenpool{animation:opened 11s infinite}
+    #typed{animation:type 11s steps(26,end) infinite}
+    #cur{animation:curmove 11s steps(26,end) infinite}
+    #cursor{animation:blink .9s steps(1) infinite}
+    #t1{animation:t1 11s infinite}#t2{animation:t2 11s infinite}
+    #u1{animation:un1 11s infinite}#u2{animation:un2 11s infinite}
+    #m1{animation:m1 11s infinite}#m2{animation:m2 11s infinite}
+    #door{animation:glow 11s infinite}
+    @keyframes stage{0%{opacity:0}3%{opacity:1}94%{opacity:1}98%{opacity:0}100%{opacity:0}}
+    @keyframes agent{0%,3%{transform:translateX(0);opacity:1}20%{transform:translateX(190px)}68%{transform:translateX(190px)}90%{transform:translateX(438px);opacity:1}93%{transform:translateX(452px);opacity:0}100%{transform:translateX(452px);opacity:0}}
+    @keyframes bob{from{transform:translateY(0)}to{transform:translateY(-2.5px)}}
+    @keyframes step{from{transform:rotate(-22deg)}to{transform:rotate(22deg)}}
+    @keyframes lift{0%,62%{transform:translateY(0)}72%,100%{transform:translateY(-116px)}}
+    @keyframes blocked{0%,20%{opacity:0}22%,60%{opacity:1}63%,100%{opacity:0}}
+    @keyframes opened{0%,64%{opacity:0}67%,94%{opacity:1}100%{opacity:0}}
+    @keyframes type{0%,30%{width:0}42%,100%{width:214px}}
+    @keyframes curmove{0%,30%{transform:translateX(0)}42%,100%{transform:translateX(196px)}}
+    @keyframes t1{0%,44%{stroke-dashoffset:24}48%,100%{stroke-dashoffset:0}}
+    @keyframes t2{0%,54%{stroke-dashoffset:24}58%,100%{stroke-dashoffset:0}}
+    @keyframes un1{0%,44%{opacity:1}46%,100%{opacity:0}}
+    @keyframes un2{0%,54%{opacity:1}56%,100%{opacity:0}}
+    @keyframes m1{0%,45%{opacity:0}48%,100%{opacity:1}}
+    @keyframes m2{0%,55%{opacity:0}58%,100%{opacity:1}}
+    @keyframes glow{0%,66%{opacity:.35}72%,100%{opacity:1}}
+    @keyframes blink{50%{opacity:0}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important}#blocked,#bubble,#redpool,#u1,#u2{opacity:0}}
+  </style>
+
+  <!-- backdrop -->
+  <rect width="900" height="290" rx="16" fill="url(#bg)"/>
+  <circle cx="230" cy="70" r="240" fill="url(#aura)"/>
+  <circle cx="800" cy="260" r="200" fill="#22d3a6" opacity=".07" filter="url(#soft)"/>
+  <rect x=".75" y=".75" width="898.5" height="288.5" rx="15.5" fill="none" stroke="url(#edge)" stroke-opacity=".55" stroke-width="1.5"/>
+
+  <text x="30" y="42" class="sans fg" font-size="21" font-weight="800" letter-spacing="-.3">gatehouse</text>
+  <text x="142" y="42" class="sans dim" font-size="13">the Stop hook holds the door until the gates are met</text>
+
+  <!-- perspective floor -->
+  <polygon points="30,214 556,214 590,282 0,282" fill="url(#floor)"/>
+  <g stroke="#7c8ad8" stroke-opacity=".16" stroke-width="1">
+    <line x1="30" y1="214" x2="556" y2="214" stroke-opacity=".5"/>
+    <line x1="30" y1="232" x2="566" y2="232"/><line x1="26" y1="254" x2="575" y2="254"/><line x1="12" y1="282" x2="586" y2="282"/>
+    <line x1="120" y1="214" x2="98" y2="282"/><line x1="210" y1="214" x2="196" y2="282"/><line x1="300" y1="214" x2="294" y2="282"/>
+    <line x1="390" y1="214" x2="392" y2="282"/><line x1="480" y1="214" x2="490" y2="282"/><line x1="556" y1="214" x2="572" y2="282"/>
+  </g>
+
+  <g id="stage">
+    <ellipse id="redpool" cx="380" cy="222" rx="110" ry="16" fill="url(#redpool)"/>
+    <ellipse id="greenpool" cx="400" cy="224" rx="170" ry="18" fill="url(#greenpool)"/>
+
+    <!-- door -->
+    <g id="door">
+      <ellipse cx="526" cy="216" rx="46" ry="8" fill="#2af5b0" opacity=".35" filter="url(#soft)"/>
+      <polygon points="502,138 552,132 552,214 502,214" fill="#053c2e"/>
+      <rect x="502" y="132" width="42" height="82" rx="3" fill="url(#doorg)" filter="url(#glow)"/>
+      <rect x="508" y="140" width="30" height="72" rx="2" fill="#06503c" opacity=".55"/>
+      <circle cx="534" cy="176" r="2.6" fill="#eafff8"/>
+      <text x="523" y="122" text-anchor="middle" class="mono grn" font-size="11" font-weight="700" letter-spacing="1">DONE</text>
+    </g>
+
+    <!-- gate: 3D posts + lintel -->
+    <g>
+      <polygon points="322,98 334,98 342,92 330,92" fill="url(#stoneT)"/>
+      <rect x="322" y="98" width="12" height="116" fill="url(#stoneF)"/>
+      <polygon points="334,98 342,92 342,208 334,214" fill="url(#stoneS)"/>
+      <polygon points="428,98 440,98 448,92 436,92" fill="url(#stoneT)"/>
+      <rect x="428" y="98" width="12" height="116" fill="url(#stoneF)"/>
+      <polygon points="440,98 448,92 448,208 440,214" fill="url(#stoneS)"/>
+      <polygon points="316,90 452,90 460,82 324,82" fill="url(#stoneT)"/>
+      <rect x="316" y="90" width="136" height="16" rx="2" fill="url(#stoneF)"/>
+      <polygon points="452,90 460,82 460,98 452,106" fill="url(#stoneS)"/>
+    </g>
+    <g clip-path="url(#gateclip)">
+      <g id="portcullis" filter="url(#glow)">
+        <g fill="url(#bar)">
+          <rect x="342" y="106" width="6" height="108" rx="3"/><rect x="360" y="106" width="6" height="108" rx="3"/>
+          <rect x="378" y="106" width="6" height="108" rx="3"/><rect x="396" y="106" width="6" height="108" rx="3"/>
+          <rect x="414" y="106" width="6" height="108" rx="3"/>
+        </g>
+        <rect x="334" y="140" width="94" height="5" rx="2.5" fill="#ff8a90"/><rect x="334" y="176" width="94" height="5" rx="2.5" fill="#ff8a90"/>
+      </g>
+    </g>
+    <g class="mono" font-size="11" font-weight="700" text-anchor="middle">
+      <g id="blocked" filter="url(#glow)"><rect x="345" y="58" width="70" height="20" rx="10" fill="#3a1220" stroke="#ff6b74"/><text x="380" y="72" class="red">BLOCKED</text></g>
+      <g id="open" filter="url(#glow)"><rect x="345" y="58" width="70" height="20" rx="10" fill="#0a3128" stroke="#39f0b4"/><text x="380" y="72" class="grn">ALL MET</text></g>
+    </g>
+
+    <!-- hook message -->
+    <g id="bubble">
+      <rect x="56" y="62" width="226" height="46" rx="10" fill="#141a35" stroke="#ff6b74" stroke-opacity=".8"/>
+      <path d="M150 108 l8 11 l8 -11z" fill="#141a35" stroke="#ff6b74" stroke-opacity=".8"/><rect x="151" y="106" width="14" height="4" fill="#141a35"/>
+      <text x="70" y="82" class="mono red" font-size="11" font-weight="700">Stop hook: decision=block</text>
+      <text x="70" y="98" class="mono dim" font-size="11">2 gates unmet, keep working</text>
+    </g>
+
+    <!-- agent -->
+    <g id="agent">
+      <g transform="translate(40 214)">
+        <ellipse cx="0" cy="0" rx="20" ry="5" fill="#000" opacity=".55" filter="url(#soft)"/>
+        <g id="bob">
+          <g transform="translate(0 -20)"><g id="leg1"><rect x="-8" y="0" width="7" height="20" rx="3.5" fill="#9aa4c8"/></g></g>
+          <g transform="translate(0 -20)"><g id="leg2"><rect x="2" y="0" width="7" height="20" rx="3.5" fill="#6d769b"/></g></g>
+          <rect x="-16" y="-64" width="32" height="46" rx="11" fill="url(#body)"/>
+          <path d="M-13 -58 q13 -8 26 0" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
+          <rect x="-12" y="-58" width="24" height="16" rx="6" fill="url(#visor)"/>
+          <ellipse cx="-4.5" cy="-50" rx="2.6" ry="3" fill="#7cf7ff" filter="url(#glow)"/><ellipse cx="5" cy="-50" rx="2.6" ry="3" fill="#7cf7ff" filter="url(#glow)"/>
+          <rect x="-8" y="-38" width="16" height="3" rx="1.5" fill="#fff" opacity=".28"/>
+          <rect x="-1.5" y="-74" width="3" height="10" fill="#c77a12"/><circle cx="0" cy="-76" r="3.6" fill="#7cf7ff" filter="url(#glow)"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- ledger panel -->
+    <g>
+      <rect x="582" y="66" width="290" height="190" rx="14" fill="#000" opacity=".4" filter="url(#soft)"/>
+      <rect x="580" y="62" width="292" height="188" rx="14" fill="url(#panel)" stroke="url(#edge)" stroke-opacity=".7"/>
+      <circle cx="598" cy="80" r="4" fill="#ff6b74"/><circle cx="612" cy="80" r="4" fill="#ffd166"/><circle cx="626" cy="80" r="4" fill="#39f0b4"/>
+      <text x="852" y="84" text-anchor="end" class="mono dim" font-size="12">GATES.md</text>
+      <g class="mono" font-size="12.5">
+        <rect x="598" y="102" width="17" height="17" rx="4.5" fill="#0b1024" stroke="#5d6a9c" stroke-width="1.5"/>
+        <path id="t1" d="M602 111 l4 4 l7 -9" fill="none" stroke="#39f0b4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="24" filter="url(#glow)"/>
+        <text x="626" y="115" class="fg">G1  unit tests pass</text>
+        <text id="u1" x="852" y="115" text-anchor="end" class="red" font-size="11">unmet</text>
+        <text id="m1" x="852" y="115" text-anchor="end" class="grn" font-size="11">met</text>
+        <rect x="598" y="132" width="17" height="17" rx="4.5" fill="#0b1024" stroke="#5d6a9c" stroke-width="1.5"/>
+        <path id="t2" d="M602 141 l4 4 l7 -9" fill="none" stroke="#39f0b4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="24" filter="url(#glow)"/>
+        <text x="626" y="145" class="fg">G2  ledger lints clean</text>
+        <text id="u2" x="852" y="145" text-anchor="end" class="red" font-size="11">unmet</text>
+        <text id="m2" x="852" y="145" text-anchor="end" class="grn" font-size="11">met</text>
+      </g>
+      <rect x="592" y="170" width="268" height="66" rx="8" fill="#070a18"/>
+      <g class="mono" font-size="12.5">
+        <text x="602" y="192" class="dim" font-size="11">running gates...</text>
+        <text x="602" y="212" class="grn">$</text>
+        <g clip-path="url(#typeclip)"><text x="616" y="212" class="fg">gatehouse check --reverify</text></g>
+        <g id="cur"><rect id="cursor" x="618" y="200" width="7" height="14" rx="1" fill="#7cf7ff"/></g>
+      </g>
+    </g>
+  </g>
+</svg>

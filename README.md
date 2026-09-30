@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/assets/gatehouse-hook.svg" alt="gatehouse Stop hook: the agent is blocked at the gate until every gate is met, then walks through" width="900"></p>
+
 # gatehouse
 
 [![tests](https://github.com/dfirmin/gatehouse/actions/workflows/tests.yml/badge.svg)](https://github.com/dfirmin/gatehouse/actions/workflows/tests.yml)
